@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciar Agendamentos - MedTech</title>
+  <link rel="stylesheet" href="style6.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo">
+      <img src="logo-convertido-de-jpeg.png" alt="MedTech Logo">
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Gerenciar Agendamentos</h1>
+    <p>Veja, edite e exclua os agendamentos realizados.</p>
+
+    <div class="control-bar">
+      <input type="text" id="buscar" placeholder="Buscar por nome ou e-mail...">
+      <button id="btnAtualizar">Atualizar</button>
+      <div id="loading" class="loading hidden"></div>
+    </div>
+
+    <table class="table-list" id="tabelaAgendamentos">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Telefone</th>
+          <th>Especialidade</th>
+          <th>Data</th>
+          <th>Hora</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="listaAgendamentos"></tbody>
+    </table>
+  </main>
+
+
+  <script>
+    function carregarAgendamentos() {
+      const dados = JSON.parse(localStorage.getItem('agendamentos') || '[]');
+      const tabela = document.getElementById('listaAgendamentos');
+      tabela.innerHTML = '';
+
+      dados.forEach((ag, index) => {
+        const linha = document.createElement('tr');
+
+        linha.innerHTML = `
+          <td>${ag.nome}</td>
+          <td>${ag.email}</td>
+          <td>${ag.telefone}</td>
+          <td>${ag.especialidade}</td>
+          <td>${ag.data}</td>
+          <td>${ag.hora}</td>
+          <td>
+            <button class="btn-editar" onclick="editar(${index})">Editar</button>
+            <button class="btn-excluir" onclick="excluir(${index})">Excluir</button>
+          </td>
+        `;
+
+        tabela.appendChild(linha);
+      });
+    }
+
+    function excluir(i) {
+      const dados = JSON.parse(localStorage.getItem('agendamentos') || '[]');
+      dados.splice(i, 1);
+      localStorage.setItem('agendamentos', JSON.stringify(dados));
+      carregarAgendamentos();
+    }
+
+    function editar(i) {
+      const dados = JSON.parse(localStorage.getItem('agendamentos') || '[]');
+      const item = dados[i];
+
+      const novoNome = prompt('Nome:', item.nome);
+      const novoEmail = prompt('Email:', item.email);
+      const novoTel = prompt('Telefone:', item.telefone);
+      const novaEsp = prompt('Especialidade:', item.especialidade);
+      const novaData = prompt('Data:', item.data);
+      const novaHora = prompt('Hora:', item.hora);
+
+      dados[i] = {
+        nome: novoNome,
+        email: novoEmail,
+        telefone: novoTel,
+        especialidade: novaEsp,
+        data: novaData,
+        hora: novaHora
+      };
+
+      localStorage.setItem('agendamentos', JSON.stringify(dados));
+      carregarAgendamentos();
+    }
+
+    document.getElementById('btnAtualizar').addEventListener('click', () => {
+      const load = document.getElementById('loading');
+      load.classList.remove('hidden');
+      setTimeout(() => {
+        load.classList.add('hidden');
+        carregarAgendamentos();
+      }, 1000);
+    });
+
+    document.getElementById('buscar').addEventListener('input', function() {
+      const termo = this.value.toLowerCase();
+      const linhas = document.querySelectorAll('#listaAgendamentos tr');
+
+      linhas.forEach(linha => {
+        const texto = linha.innerText.toLowerCase();
+        linha.style.display = texto.includes(termo) ? '' : 'none';
+      });
+    });
+
+    carregarAgendamentos();
+  </script>
+</body>
+</html>

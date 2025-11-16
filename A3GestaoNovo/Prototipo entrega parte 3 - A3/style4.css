@@ -1,0 +1,179 @@
+/* ===== CONFIGURAÇÃO GERAL ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0a0f1a;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== CABEÇALHO ===== */
+.topo {
+  background: #0d1424;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.logo {
+  margin: 0;
+  font-size: 24px;
+  color: #4fa3ff;
+  font-weight: bold;
+}
+
+/* ===== MENU ===== */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #d2d9e5;
+  font-size: 16px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  background: #1a2538;
+  color: #4fa3ff;
+}
+
+nav ul li a.active {
+  background: #4fa3ff;
+  color: #0a0f1a;
+  font-weight: bold;
+}
+
+/* ===== CONTEINERES ===== */
+.container {
+  max-width: 450px;
+  margin: auto;
+  padding: 30px;
+  text-align: center;
+}
+
+.fade-in {
+  animation: fade 1s ease-in-out;
+}
+
+/* Fade suave */
+@keyframes fade {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== TÍTULOS ===== */
+h1 {
+  margin-bottom: 10px;
+  font-size: 32px;
+}
+
+.descricao {
+  font-size: 15px;
+  color: #a9b5c9;
+  margin-bottom: 25px;
+}
+
+/* ===== FORMULÁRIO DO INÍCIO ===== */
+.form-box input {
+  width: 100%;
+  padding: 12px;
+  background: #121b2e;
+  border: 1px solid #1f2b42;
+  color: #fff;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  transition: 0.3s;
+}
+
+.form-box input:focus {
+  border-color: #4fa3ff;
+  box-shadow: 0 0 6px rgba(79, 163, 255, 0.4);
+  outline: none;
+}
+
+/* ===== BOTÕES GERAIS ===== */
+button {
+  display: block;
+  width: 100%;
+  max-width: 350px;
+  margin: 15px auto;
+  padding: 12px;
+  background: #4fa3ff;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #6fb9ff;
+  transform: scale(1.03);
+}
+
+/* ===== BOTÕES DAS ALTERNATIVAS DO QUIZ ===== */
+#quiz-box button {
+  background: #1b2b47;
+  border: 1px solid #4fa3ff;
+}
+
+#quiz-box button:hover {
+  background: #254066;
+}
+
+/* ===== RESULTADO ===== */
+#result-box h2 {
+  margin-bottom: 10px;
+  color: #4fa3ff;
+}
+
+#result-box p {
+  font-size: 17px;
+  margin-top: 10px;
+}
+
+/* ===== BOTÃO FINAL (REINICIAR, ETC.) ===== */
+#result-box button {
+  background: #4fa3ff;
+  font-weight: bold;
+}
+
+/* ===== RODAPÉ ===== */
+.rodape {
+  margin-top: auto;
+  background: #0d1424;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  color: #6f7d94;
+  border-top: 1px solid #162235;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 26px;
+  }
+
+  button {
+    font-size: 16px;
+  }
+
+  .container {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Triagem - Quiz</title>
+  <link rel="stylesheet" href="style4.css" />
+</head>
+<body>
+
+  <header class="topo">
+    <h2 class="logo">MedTech</h2>
+
+    <nav>
+      <ul>
+        <li><a href="menu.html">Home</a></li>
+        <li><a href="triagem.html" class="active">Triagem</a></li>
+        <li><a href="agendamento.html">Agendar Consulta</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </nav>
+
+  </header>
+  
+  <div id="welcome-screen" class="container fade-in">
+    <h1>Triagem Médica</h1>
+    <p class="descricao">Responda a um rápido questionário para identificar o nível de prioridade no atendimento.</p>
+
+    <div class="form-box">
+      <input type="text" id="nome" placeholder="Digite seu nome" />
+      <input type="date" id="nascimento" placeholder="Data de Nascimento" />
+      <button onclick="iniciarQuiz()">Iniciar</button>
+    </div>
+  </div>
+
+  <div id="quiz-box" class="container" style="display:none;"></div>
+
+  <div id="result-box" class="container" style="display:none;">
+    <h2>Resultado</h2>
+    <p id="resultado-texto"></p>
+    <p id="mensagem-final"></p>
+  </div>
+
+  <footer class="rodape">
+    <p>© 2025 MedTech — Sistema Acadêmico</p>
+  </footer>
+
+  <script src="triagem.js"></script>
+</body>
+</html>

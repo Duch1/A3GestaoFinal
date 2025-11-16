@@ -1,0 +1,190 @@
+/* style-agendar.css - Estilo para página Agendar Consulta (MedTech)
+   Autor: Assistente
+   Notas: Tema escuro com tons de azul, responsivo e moderno. */
+
+:root{
+  --bg:#0f1724; /* azul escuro quase preto */
+  --card:#0b1220;
+  --muted:#9aa7bd;
+  --accent:#2b8cff; /* azul principal */
+  --accent-2:#1e6fe6;
+  --success:#2ecc71;
+  --danger:#ff6b6b;
+  --glass: rgba(255,255,255,0.04);
+  --radius:12px;
+  --fw-regular:400;
+  --fw-semibold:600;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:linear-gradient(180deg,var(--bg) 0%, #081122 100%);
+  color:#e6eef8;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+}
+
+.header{
+  width:100%;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(90deg, rgba(11,18,32,0.6), rgba(7,12,20,0.3));
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  padding:18px 28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo img{height:44px}
+nav ul{list-style:none;display:flex;gap:18px;align-items:center}
+nav a{
+  color:var(--muted);
+  text-decoration:none;
+  font-weight:var(--fw-regular);
+  padding:8px 12px;
+  border-radius:10px;
+}
+nav a:hover, nav a.active{color:var(--accent);background:var(--glass)}
+
+.container{
+  max-width:980px;
+  margin:48px auto;
+  padding:28px;
+}
+
+h1{font-size:28px;margin-bottom:6px}
+p{color:var(--muted);margin-bottom:20px}
+
+.main-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.03);
+  padding:22px;
+  border-radius:var(--radius);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+}
+
+.formulario{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:14px 18px;
+  margin-top:12px;
+}
+
+.formulario label{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}
+.formulario input[type="text"],
+.formulario input[type="email"],
+.formulario input[type="tel"],
+.formulario input[type="date"],
+.formulario input[type="time"],
+.formulario select{
+  width:100%;
+  padding:12px 14px;
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:10px;
+  color:var(--accent-2);
+  outline:none;
+  transition:all .18s ease-in-out;
+}
+.formulario input:focus, .formulario select:focus{
+  box-shadow: 0 6px 20px rgba(43,140,255,0.07);
+  border-color: rgba(43,140,255,0.46);
+}
+
+/* Inputs que ocupam toda largura (ex: textarea ou mensagens) */
+.formulario .full{
+  grid-column:1/-1;
+}
+
+.btn-enviar{
+  grid-column:1/-1;
+  justify-self:start;
+  padding:12px 22px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:white;
+  border:none;
+  border-radius:12px;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow: 0 10px 30px rgba(43,140,255,0.12), inset 0 -2px 6px rgba(0,0,0,0.2);
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.btn-enviar:hover{transform:translateY(-2px)}
+
+/* Mensagem de sucesso */
+.sucesso{
+  margin-top:18px;
+  padding:14px 16px;
+  background:linear-gradient(90deg, rgba(46,204,113,0.08), rgba(46,204,113,0.03));
+  border:1px solid rgba(46,204,113,0.12);
+  color:var(--success);
+  border-radius:10px;
+}
+
+/* Floating buttons (se estiver usando os mesmos do site) */
+.floating-buttons{
+  position:fixed;
+  right:18px;
+  bottom:20px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  z-index:80;
+}
+.floating-buttons .btn-appointment,
+.floating-buttons .btn-triage{
+  padding:12px 16px;
+  border-radius:14px;
+  border:none;
+  cursor:pointer;
+  box-shadow: 0 8px 20px rgba(2,6,23,0.6);
+  backdrop-filter: blur(6px);
+}
+.btn-appointment{
+  background:transparent;
+  color:var(--accent-2);
+  border:1px solid rgba(43,140,255,0.16);
+}
+.btn-triage{
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:white;
+}
+
+/* Mobile responsiveness */
+@media (max-width:880px){
+  .container{padding:18px;margin:28px 16px}
+  .formulario{grid-template-columns:1fr}
+  h1{font-size:22px}
+  nav ul{gap:10px}
+  .logo img{height:40px}
+}
+
+@media (max-width:420px){
+  .header{padding:12px}
+  .floating-buttons{right:12px;bottom:14px}
+  .btn-enviar{width:100%}
+}
+
+/* Pequenas melhorias visuais */
+input::placeholder{color:rgba(255,255,255,0.12)}
+
+/* foco acessível */
+:focus{outline:2px solid rgba(43,140,255,0.12);outline-offset:2px}
+
+/* animação leve para card aparecer */
+@keyframes floatIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.container{animation:floatIn .36s ease-out both}
+
+/* tabelas/labels internas (caso queira listar agendamentos) */
+.table-list{width:100%;border-collapse:collapse;margin-top:18px}
+.table-list th, .table-list td{padding:10px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.03);font-size:14px;color:var(--muted)}
+.table-list th{color:var(--accent-2);font-weight:600}
+
+/* pequenas utilidades */
+.hidden{display:none !important}
+.center{display:flex;align-items:center;justify-content:center}
+
+/* Versão clara para impressão */
+@media print{body{color:#000;background:#fff} .header, .floating-buttons, footer{display:none}}
