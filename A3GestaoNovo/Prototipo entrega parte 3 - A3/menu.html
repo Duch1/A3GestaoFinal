@@ -24,18 +24,31 @@
     </nav>
   </header>
 
-  <!-- Seção Hero -->
-  <main>
-    <section class="hero">
-      <h1>Bem-vindo à MedTech</h1>
-      <p>Inovação e tecnologia para o seu cuidado médico, de forma rápida e eficiente.</p>
-      <div class="cta-buttons">
-        <button class="cta-button" id="btnHeroTriagem">Iniciar Triagem</button>
-        <button class="cta-button">O Prazer é todo nosso!</button>
-      </div>
-    </section>
+ <!-- Seção Hero -->
+<main>
+  <section class="hero">
+    <h1>Bem-vindo à MedTech</h1>
+    <p>Inovação e tecnologia para o seu cuidado médico, de forma rápida e eficiente.</p>
+    
+    <div class="cta-buttons">
+      <button class="cta-button" id="btnHeroTriagem">Iniciar Triagem</button>
+      <button class="cta-button" id="btnPrazer">O Prazer é todo nosso!</button>
+    </div>
 
-  </main>
+  </section>
+</main>
+
+<script>
+  document.getElementById('btnHeroTriagem').onclick = function () {
+    window.location.href = 'triagem.html';
+  }
+
+  document.getElementById('btnPrazer').onclick = function () {
+    window.location.href = 'sobre.html';
+  }
+</script>
+
+  
 
   <!-- Rodapé -->
   <footer>
