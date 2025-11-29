@@ -39,6 +39,7 @@ function mostrarPacientes() {
       <td style="color:${corRisco}; font-weight:bold">${paciente.risco || "—"}</td>
       <td>${paciente.setor || "—"}</td>
       <td>${paciente.data || "—"}</td>
+      <td>${paciente.idade || calcularIdade(paciente.nascimento)}</td>
       <td>
         <button class="relatorio" onclick="verRelatorioPaciente(${index})">Ver</button>
         <button onclick="editarPaciente(${index})">Editar</button>
@@ -66,7 +67,7 @@ function verRelatorioPaciente(index) {
   relatorioTexto.innerHTML = `
   <h2>Relatório</h2>
   <strong>Nome:</strong> ${paciente.nome}<br>
-  <strong>Idade:</strong> ${calcularIdade(paciente.dataNascimento)} anos<br>
+  <strong>Idade:</strong> ${calcularIdade(paciente.nascimento)}<br>
   <strong>Risco:</strong> ${paciente.risco}<br>
   <strong>Setor:</strong> ${paciente.setor}<br>
   <strong>Data de Cadastro:</strong> ${paciente.data || "—"}<br><br>
@@ -130,17 +131,24 @@ function editarPaciente(index) {
   const novoNome = prompt("Editar nome:", paciente.nome) || paciente.nome;
   const novoRisco = prompt("Editar risco (Baixo, Moderado, Alto):", paciente.risco) || paciente.risco;
   const novoSetor = prompt("Editar setor:", paciente.setor) || paciente.setor;
-  const novoNascimento = prompt("Editar data de nascimento (YYYY-MM-DD):", paciente.dataNascimento) || paciente.dataNascimento;
+
+  let novoNascimento = prompt("Editar data de nascimento (YYYY-MM-DD):", paciente.dataNascimento);
+
+  if (novoNascimento && isNaN(new Date(novoNascimento))) {
+    alert("Data de nascimento inválida. Use o formato YYYY-MM-DD.");
+    return;
+  }
 
   paciente.nome = novoNome;
   paciente.risco = novoRisco;
   paciente.setor = novoSetor;
-  paciente.dataNascimento = novoNascimento;
+  paciente.dataNascimento = novoNascimento || paciente.dataNascimento;
 
   pacientes[index] = paciente;
   localStorage.setItem("filaPacientes", JSON.stringify(pacientes));
   mostrarPacientes();
 }
+
 
 
 // -------------------------------

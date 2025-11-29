@@ -39,6 +39,7 @@ function mostrarPacientes() {
       <td style="color:${corRisco}; font-weight:bold">${paciente.risco || "—"}</td>
       <td>${paciente.setor || "—"}</td>
       <td>${paciente.data || "—"}</td>
+      <td>${paciente.idade || calcularIdade(paciente.nascimento)}</td>
       <td>
         <button class="relatorio" onclick="verRelatorioPaciente(${index})">Ver</button>
       </td>
@@ -64,7 +65,7 @@ function verRelatorioPaciente(index) {
   relatorioTexto.innerHTML = `
     <h2>Relatório</h2>
     <strong>Nome:</strong> ${paciente.nome || "—"}<br>
-    <strong>Idade:</strong> ${calcularIdade(paciente.dataNascimento)}<br>
+    <strong>Idade:</strong> ${calcularIdade(paciente.nascimento)}<br>
     <strong>Risco:</strong> ${paciente.risco || "—"}<br>
     <strong>Setor:</strong> ${paciente.setor || "—"}<br>
     <strong>Data de Cadastro:</strong> ${paciente.data || "—"}<br><br>
